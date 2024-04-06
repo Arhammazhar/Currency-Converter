@@ -2,6 +2,8 @@
 
 import inquirer from "inquirer";
 
+let condition: boolean = true;
+
 const currency: any = {
   USD: 1,
   EURO: 0.91,
@@ -9,7 +11,7 @@ const currency: any = {
   INR: 74.57,
   PKR: 280,
 };
-
+while(condition){
 let user_answer = await inquirer.prompt([
   {
     name: "from",
@@ -41,3 +43,14 @@ let baseAmount = amount / fromAmount;
 let convertedAmount = baseAmount * toAmount;
 
 console.log(convertedAmount);
+
+
+
+let ConfirmationMessage = await inquirer.prompt([{
+  name: "confirmation",
+  type: "confirm",
+  message: "Do you want to do more conversion?",
+  default: "true",
+}])
+condition = ConfirmationMessage.confirmation;
+}
